@@ -1,1 +1,58 @@
-<p>scorings works!</p>
+<h3>{{LeagueName}}</h3>
+<br/>
+<form>
+    <p>Season starts: {{SeasonStart}} &nbsp;</p>
+        <div class="container" [ngSwitch]="CurrentRole*10">
+            <div *ngSwitchCase=10>Head Referee</div>
+            <div *ngSwitchCase=20>Referee</div>
+            <div *ngSwitchCase=30>Scorekeeper</div>
+            <div *ngSwitchCase=40>Admin</div>
+            <div *ngSwitchDefault>End User</div>
+        </div>
+    <br/>
+<p style="font-size: large;margin-left:50px;">
+    Game:
+    <select (change)="onSchedChange(($event.target as HTMLInputElement).value)">
+        <option *ngFor="let currentRow of MySchedule"
+                value={{currentRow.id}}   
+        >   {{currentRow.HomeTeam + " vs "+ currentRow.AwayTeam}}
+        </option>
+    </select>
+</p>
+<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="form-group col-md-3">
+        <label for="HomeTeam" style="float:left;font-size:large;">{{HomeTeam}}</label>
+    </div>
+    <div class="form-group col-md-2">
+        <input type="number"
+            style="width: 80px; float:right;text-align:right;"
+            [(ngModel)]="HomeScore" name="HomeScoreVal"
+            class="form-control"
+        />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="form-group col-md-3">
+        <label for="AwayTeam" style="float:left;font-size:large;">{{AwayTeam}}</label>
+    </div>
+    <div class="form-group col-md-2">
+        <input type="number"
+            style="width: 80px; float:right;text-align:right;"
+            [(ngModel)]="AwayScore" name="AwayScoreVal"
+            class="form-control"
+        />
+    </div>
+</div>
+<br/>
+    <button type="button" (click)="onRecordScores()"
+        style="font-size: large;margin-left: 50px;"
+    >
+    Record Scores
+    </button>
+</form>
