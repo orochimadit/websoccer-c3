@@ -12,7 +12,7 @@
     <br/>
 <p style="font-size: large;margin-left:50px;">
     Game:
-    <select (change)="onSchedChange(($event.target as HTMLInputElement).value)">
+    <select (change)="onSchedChange($any($event).target.value)">
         <option *ngFor="let currentRow of MySchedule"
                 value={{currentRow.id}}   
         >   {{currentRow.HomeTeam + " vs "+ currentRow.AwayTeam}}
